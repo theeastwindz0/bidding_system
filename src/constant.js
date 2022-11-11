@@ -54,8 +54,15 @@ export const ALL_LINKS = {
 export const API_ACCOUNT_DOMAIN = 'http://localhost:5001/';
 
 const USER_API = API_ACCOUNT_DOMAIN + 'api/user/';
-
+const PRODUCT_API = API_ACCOUNT_DOMAIN + 'api/product/';
 export const API_ACCOUNT = {
   userSignUp: USER_API + 'signup',
   userLogin: USER_API + 'login',
+  lastNProducts: PRODUCT_API + 'getLastNProducts',
+  createProduct: PRODUCT_API + 'createProduct',
+  bidOnProduct: PRODUCT_API + 'bidOnProduct',
+  sellProduct: PRODUCT_API + 'sellProduct',
+  getAllProducts: PRODUCT_API + 'getProducts',
+  getProductsBySeller: PRODUCT_API + 'getProductBySeller',
+  productBoughtByUser: PRODUCT_API + 'productBoughtByUser',
 };
