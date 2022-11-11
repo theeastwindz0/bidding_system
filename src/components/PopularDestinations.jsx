@@ -23,8 +23,7 @@ const PopularDestinations = () => {
         <p>Popular Products</p>
     <FontAwesomeIcon icon={faArrowRight} size='lg' color='black'/>
         </Link>
-    <div className=' space-x-2 flex justify-center'>
-        <Box/>
+    <div className=' space-x-2 flex flex-wrap justify-center'>
         <Box/>
         <Box/>
         <Box/>

@@ -1,7 +1,7 @@
 import { lazy } from "react";
 
 
-const  HomePage =lazy(()=>import("./HomePage/HomePage"));
+const  HomePage =lazy(()=>import("./pages/HomePage"));
 const  Signup =lazy(()=>import("./Authentication/Signup"));
 const  Login =lazy(()=>import("./Authentication/Login"));
 const  Product =lazy(()=>import("./Products/Product"));

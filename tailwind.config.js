@@ -10,10 +10,10 @@ module.exports = {
         'mdrev': {'max':'768px'},
       },
       colors:{
-        primary:'#c72229',
-        secondary:'#da8f89',
-        teritary:'#6a4743',
-        quaternery:'#201e19',
+        primary:'#06283D',
+        secondary:'#1363DF',
+        teritary:'#47B5FF',
+        quaternery:'#232323',
         buttonshade:'#c00000'
       }
     },
