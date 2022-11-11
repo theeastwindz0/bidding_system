@@ -89,7 +89,8 @@ export const API_ACCOUNT = {
   getAllProducts: PRODUCT_API + 'getProducts',
   getProductsBySeller: PRODUCT_API + 'getProductBySeller',
   productBoughtByUser: PRODUCT_API + 'productBoughtByUser',
-  uploadProfilePic : USER_API + 'profilePic',
-  getProductById : PRODUCT_API + 'getProductById',
-  productStats : PRODUCT_API + 'productStats',
+  uploadProfilePic: USER_API + 'profilePic',
+  getProductById: PRODUCT_API + 'getProductById',
+  productStats: PRODUCT_API + 'productStats',
+  productBoughtAndSold: PRODUCT_API + 'getProductsBoughtAndSold',
 };
