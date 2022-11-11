@@ -1,10 +1,15 @@
 import { useFormik } from 'formik';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Button from '../components/Button';
 import InputField from '../components/InputField';
 import { getLoginUser } from '../services/api-services';
+import AuthContext from '../store/AuthContext';
 const Login = () => {
+
+  const authCtx=useContext(AuthContext);
+  const navigate=useNavigate();
   const formik = useFormik({
     initialValues: {
       mobileNumber: '',
@@ -16,12 +21,15 @@ const Login = () => {
         .then((res) => {
           console.log(res.data);
           if (res.status === 200) {
-            localStorage.setItem('token', res.data.token);
-            localStorage.setItem('user', JSON.stringify(res.data.user));
+            authCtx.login(res.data.token);
+            authCtx.login(res.data.user);
+            toast.success("Logged in successfully.")
+            
           }
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response.data.message);
+          toast.error(err.response.data.message)
         });
     },
     validate: (values) => {
@@ -52,7 +60,7 @@ const Login = () => {
           <InputField
             onBlur={formik.handleBlur}
             labelName="Password"
-            type="text"
+            type="password"
             uni="password"
             placeholder="Enter password"
             onChange={formik.handleChange}

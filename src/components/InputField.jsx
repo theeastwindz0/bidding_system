@@ -12,19 +12,20 @@ const InputField = ({
   onBlur,
   disabled,
   rowWise,
-
+  labelClass,
+  inputClass,
 }) => {
   return (
     <div className="">
       <div className={`col-span-1  ${rowWise ? 'grid grid-cols-3': 'flex flex-col' } `}>
-        <label className=" text-white text-lg col-span-1 flex items-center py-1 font-semibold" htmlFor={uni}>
+        <label className={`text-white text-lg col-span-1 flex items-center py-1 font-semibold ${labelClass}`} htmlFor={uni}>
           {labelName}
         </label>
         <input
           disabled={disabled}
           value={value}
           onChange={onChange}
-          className={` p-4 rounded-md text-black bg-white rounded-xs ${rowWise ? 'col-span-2' : 'flex flex-col'}`}
+          className={` p-4 rounded-md text-black bg-white rounded-xs ${rowWise ? 'col-span-2' : 'flex flex-col' } ${inputClass }`}
           placeholder={placeholder}
           type={type}
           id={uni}

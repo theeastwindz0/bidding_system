@@ -1,11 +1,12 @@
 import { useFormik } from 'formik';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Button from '../components/Button';
 import InputField from '../components/InputField';
 import { getCreateUser } from '../services/api-services';
 const Signup = () => {
+  const navigate=useNavigate();
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -25,6 +26,8 @@ const Signup = () => {
         .then((res) => {
           if (res.status === 201) {
             toast.success('User created successfully');
+            navigate('/login')
+            
           }
         })
         .catch((err) => {

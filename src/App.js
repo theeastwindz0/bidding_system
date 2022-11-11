@@ -25,9 +25,9 @@ const App = () => {
     ALL_LINKS.HomePage,
     ALL_LINKS.Login,
     ALL_LINKS.Signup,
-    ALL_LINKS.Categories
+    ALL_LINKS.Categories,
+    ALL_LINKS.UserProfile
   ];
-
   const currentPathName = (location) => {
     let currentPage = PAGES.filter(
       (item, index) => item.pageLink === location.pathname
