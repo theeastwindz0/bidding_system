@@ -21,7 +21,7 @@ const ProductDetailed = () => {
   const handleSell = () => {
     getSellProduct({
       productId: id,
-      sellerId: product.seller,
+      sellerId: product.seller._id,
       bidderId: userId,
     })
       .then((res) => {

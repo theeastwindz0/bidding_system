@@ -29,9 +29,9 @@ const Header = () => {
 
       <div className='flex justify-center space-x-2 smrev:space-x-1 bg-quaternery p-2 '>
         <Link to='/' className='hover:bg-opacity-90 hover:bg-purple-400 p-1'>HOME</Link>
-        <Link to='/categories' className='hover:bg-opacity-90 hover:bg-purple-400 p-1'>CATEGORIES</Link>
-        <Link to='/community' className='hover:bg-opacity-90 hover:bg-purple-400 p-1'>COMMUNITY</Link>
-        <Link to='/about' className='hover:bg-opacity-90 hover:bg-purple-400 p-1'>ABOUT</Link>
+        <Link to='/categories' className='hover:bg-opacity-90 hover:bg-purple-400 p-1'>PRODUCTS</Link>
+        {/* <Link to='/community' className='hover:bg-opacity-90 hover:bg-purple-400 p-1'>COMMUNITY</Link>
+        <Link to='/about' className='hover:bg-opacity-90 hover:bg-purple-400 p-1'>ABOUT</Link> */}
         {/* <Link to='' className='hover:opacity-70 hover:bg-purple-400 p-1'>FEATURED</Link> */}
       </div>
     </div>

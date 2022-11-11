@@ -7,7 +7,9 @@ import InputField from '../components/InputField';
 import AuthContext from '../store/AuthContext';
 import { getCreateProduct } from '../services/api-services';
 import SelectField from '../components/SelectField';
+import { useNavigate } from 'react-router-dom';
 const AddProduct = () => {
+  const navigate=useNavigate();
   const [preview, setPreview] = useState('');
   const [image, setImage] = useState(null);
 
@@ -38,7 +40,7 @@ const AddProduct = () => {
       //     if (res.status === 201) {
       //       toast.success('User created successfully');
       //       navigate('/login')
-            
+
       //     }
       //   })
       //   .catch((err) => {
@@ -52,12 +54,12 @@ const AddProduct = () => {
       category: values.category,
       biddingClosedAt: values.biddingClosedAt,
       howOld: values.howOld,
-      seller:authCtx.userid._id ,
+      seller:authCtx.userid?._id ,
       image:image
-      
+
       }).then(res=>{
         toast.success("Product Created Successfully!");
-
+        navigate('/viewmyproducts')
       }).catch(err=>{
         console.log(err);
       })
@@ -94,13 +96,13 @@ const AddProduct = () => {
 
           </div>
                   <InputField onBlur={formik.handleBlur} labelName="Description" type="text" uni="description" placeholder="Enter Description" onChange={formik.handleChange} value={formik.values.description} touched={formik.touched.description} error={formik.errors.description} inputClass='border-[1px]' labelClass='text-black' />
-                  
+
                   <div className="grid grid-cols-3  smrev:grid-cols-1  space-x-4 smrev:space-x-0 ">
                   {image &&  <div className='w-full h-60 rounded-md flex justify-center items-center overflow-hidden'>
                     <img src={preview}></img>
                   </div>}
                   <div className='border-2 border-dotted w-full h-60 border-black rounded-md flex justify-center items-center smrev:my-2'>
-                    
+
                   <div className=" right-0 bottom-8">
               <label htmlFor="profile_pic">
                 <FontAwesomeIcon
