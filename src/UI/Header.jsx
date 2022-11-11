@@ -14,14 +14,14 @@ const Header = () => {
           <img src={logo} />
         </Link>
         <div id='title' className='text-2xl font-bold  uppercase '>{ALL_VAR.brandName}</div>
-        <div>
-            {authCtx.isLoggedIn ?
+        <div className='flex  gap-2'>
+
           <Link to='profile'>
           <FontAwesomeIcon icon={faUser} size='xl' color='white'/>
           </Link>
-          :
-          <Link to='/login'>
-          <FontAwesomeIcon icon={faRightToBracket} size='xl' color='white'/>
+          {authCtx.isLoggedIn ?
+          <div className='cursor-pointer' onClick={()=>authCtx.logout()}>  <FontAwesomeIcon icon={faRightToBracket} size='xl' color='white'/> </div>:
+           <Link to='/login'><FontAwesomeIcon icon={faRightToBracket} size='xl' color='white'/>
           </Link>
             }
         </div>

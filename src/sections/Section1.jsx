@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import section_1 from '../Images/section_1.png';
+import AuthContext from '../store/AuthContext';
 const Section1 = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({});
+  const authCtx=useContext(AuthContext);
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
     setUser(user);
   }, []);
   return (
@@ -32,15 +33,15 @@ const Section1 = () => {
             className="text-xl bg-black mt-10 text-white font-bold p-4 rounded-full transition  hover:scale-105 px-12"
             to={user ? '/dashboard' : '/login'}
             onClick={() => {
-              if (user) {
+              if (authCtx.isLoggedIn) {
                 navigate('/dashboard');
               } else {
-                navigate('/login');
+                navigate('/signup');
               }
             }}
           >
             {' '}
-            {user ? 'Go to Dashboard' : 'Become a member'}
+            {authCtx.isLoggedIn ? 'Go to Dashboard' : 'Become a member'}
           </button>
         </div>
       </div>

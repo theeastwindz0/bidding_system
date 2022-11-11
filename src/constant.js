@@ -5,6 +5,8 @@ const Login = lazy(() => import('./Authentication/Login'));
 const Product = lazy(() => import('./Products/Product'));
 const ProductCategories = lazy(() => import('./components/ProductCategories'));
 const UserProfile = lazy(() => import('./pages/UserProfile'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const AddProduct = lazy(() => import('./pages/AddProduct'));
 
 export const ALL_LINKS = {
   HomePage: {
@@ -47,7 +49,21 @@ export const ALL_LINKS = {
     view: UserProfile,
     headerShown: true,
     footerShown: true,
-    loginRequire: false,
+    loginRequire: true,
+  },
+  Dashboard: {
+    pageLink: '/dashboard',
+    view: Dashboard,
+    headerShown: true,
+    footerShown: true,
+    loginRequire: true,
+  },
+  AddProduct: {
+    pageLink: '/addproduct',
+    view: AddProduct,
+    headerShown: true,
+    footerShown: true,
+    loginRequire: true,
   },
 };
 
