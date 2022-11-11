@@ -28,7 +28,8 @@ const App = () => {
     ALL_LINKS.Categories,
     ALL_LINKS.UserProfile,
     ALL_LINKS.Dashboard,
-    ALL_LINKS.AddProduct
+    ALL_LINKS.AddProduct,
+    ALL_LINKS.ProductDetailed
   ];
   const currentPathName = (location) => {
     let currentPage = PAGES.filter(
