@@ -1,10 +1,12 @@
-import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
+import { faRightToBracket, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { ALL_VAR } from '../constants/constant'
 import logo from '../Images/logo.png'
+import AuthContext from '../store/AuthContext'
 const Header = () => {
+  const authCtx=useContext(AuthContext);
   return (
     <div className=' bg-primary text-white'>
       <div className='flex justify-between p-4 items-center'>
@@ -13,9 +15,15 @@ const Header = () => {
         </Link>
         <div id='title' className='text-2xl font-bold  uppercase '>{ALL_VAR.brandName}</div>
         <div>
+            {authCtx.isLoggedIn ?
+          <Link to='profile'>
+          <FontAwesomeIcon icon={faUser} size='xl' color='white'/>
+          </Link>
+          :
           <Link to='/login'>
           <FontAwesomeIcon icon={faRightToBracket} size='xl' color='white'/>
           </Link>
+            }
         </div>
       </div>
 

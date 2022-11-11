@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import React, { useContext } from 'react';
+import React, { useContext, useLayoutEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Button from '../components/Button';
@@ -10,6 +10,10 @@ const Login = () => {
 
   const authCtx=useContext(AuthContext);
   const navigate=useNavigate();
+
+  useLayoutEffect(() => {
+    if(authCtx.isLoggedIn)navigate('/')
+  }, [])
   const formik = useFormik({
     initialValues: {
       mobileNumber: '',
@@ -21,9 +25,10 @@ const Login = () => {
         .then((res) => {
           console.log(res.data);
           if (res.status === 200) {
-            authCtx.login(res.data.token);
-            authCtx.login(res.data.user);
-            toast.success("Logged in successfully.")
+            console.log(res.data.user);
+            authCtx.login(res.data.token,res.data.user);
+            toast.success("Logged in successfully.");
+            navigate('/')
             
           }
         })

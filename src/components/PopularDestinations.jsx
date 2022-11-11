@@ -7,10 +7,9 @@ const PopularDestinations = () => {
     const [products,setProducts]=useState([])
     useEffect(()=>{
     getLastNProducts(5).then((res)=>{
-        console.log(res.data)
         setProducts(res.data.products)
     }).catch((err)=>{
-        console.log(err)
+        // console.log(err)
     })
     },[])
     const Box=({product})=>{

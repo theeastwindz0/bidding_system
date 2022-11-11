@@ -40,7 +40,7 @@ const Section1 = () => {
             }}
           >
             {' '}
-            {user.name ? 'Go to Dashboard' : 'Become a member'}
+            {user ? 'Go to Dashboard' : 'Become a member'}
           </button>
         </div>
       </div>

@@ -1,11 +1,19 @@
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useContext, useLayoutEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Button from '../components/Button';
 import InputField from '../components/InputField';
 import { getCreateUser } from '../services/api-services';
+import AuthContext from '../store/AuthContext';
 const Signup = () => {
+
+  const authCtx=useContext(AuthContext);
+
+  useLayoutEffect(() => {
+    if(authCtx.isLoggedIn)navigate('/')
+  }, [])
+
   const navigate=useNavigate();
   const formik = useFormik({
     initialValues: {

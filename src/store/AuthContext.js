@@ -11,9 +11,9 @@ const AuthContext=React.createContext({
 
 const retrieveStoredToken = () => {
     const storedToken = localStorage.getItem("token");
-    const userid = localStorage.getItem("token");
+    const user =JSON.parse(localStorage.getItem('user'));
   
-    return { token: storedToken,userid};
+    return { token: storedToken,user};
   };
 
 export const AuthContextProvider=(props)=>
@@ -24,12 +24,14 @@ export const AuthContextProvider=(props)=>
     let initialUserid;
     if (tokenData) {
       initialToken = tokenData.token;
-      initialUserid=tokenData.userid;
+      initialUserid=tokenData.user;
 
     }
     const [token, setToken] = useState(initialToken);
     const [userid, setUserId] = useState(initialUserid);
-    const [isLoggedIn,setIsLoggedIn]=useState(!!initialToken)
+    const [isLoggedIn,setIsLoggedIn]=useState(!!initialToken);
+
+    console.log(userid)
 
 
 
@@ -42,12 +44,12 @@ export const AuthContextProvider=(props)=>
         toast.success("Logged out Successfully")
       };
 
-      const loginHandler = (token,userid) => {
+      const loginHandler = (token,user) => {
         setToken(token);
         setUserId(userid);
         setIsLoggedIn(true);
         localStorage.setItem("token", token);
-        localStorage.setItem("userid", userid);
+        localStorage.setItem('user', JSON.stringify(user));
 
       };
 

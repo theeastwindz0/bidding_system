@@ -13,7 +13,7 @@ const UserProfile = () => {
       <div className="col-span-3  flex justify-center items-centerp-8 p-4">
         <div className="w-60 h-60 rounded-full bg-gray-300">
           <img
-            src={user.profilePic ? user.profilePic : 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png'}
+            src={user?.profilePic ? user?.profilePic : 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png'}
             alt="profile"
             className="w-full h-full rounded-full"
           />
@@ -27,7 +27,7 @@ const UserProfile = () => {
             labelClass="text-black"
             type="text"
             uni="text"
-            value={user.name}
+            value={user?.name}
             inputClass="bg-gray-200"
           />
           <InputField
@@ -36,7 +36,7 @@ const UserProfile = () => {
             labelClass="text-black"
             type="text"
             uni="text"
-            value={user.email}
+            value={user?.email}
             inputClass="bg-gray-200"
           />
           <InputField
@@ -45,7 +45,7 @@ const UserProfile = () => {
             labelClass="text-black"
             type="text"
             uni="text"
-            value={user.mobileNumber}
+            value={user?.mobileNumber}
             inputClass="bg-gray-200"
           />
         </div>
@@ -55,7 +55,7 @@ const UserProfile = () => {
           labelClass="text-black"
           type="text"
           uni="text"
-          value={user.address}
+          value={user?.address}
           inputClass="bg-gray-200"
         />
         <div className="grid grid-cols-3 gap-4 smrev:grid-cols-1">
@@ -65,7 +65,7 @@ const UserProfile = () => {
             labelClass="text-black"
             type="text"
             uni="text"
-            value={user.city}
+            value={user?.city}
             inputClass="bg-gray-200"
           />
           <InputField
@@ -74,7 +74,7 @@ const UserProfile = () => {
             labelClass="text-black"
             type="text"
             uni="text"
-            value={user.state}
+            value={user?.state}
             inputClass="bg-gray-200"
           />
         </div>
