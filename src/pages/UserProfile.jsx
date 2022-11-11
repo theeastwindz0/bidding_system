@@ -4,13 +4,15 @@ import Button from '../components/Button';
 import React, { useContext, useEffect, useState } from 'react';
 import InputField from '../components/InputField';
 import AuthContext from '../store/AuthContext';
+import { getUploadProfilePic } from '../services/api-services';
+import { toast } from 'react-toastify';
 
 const UserProfile = () => {
-  const [preview, setPreview] = useState('https://cdn-icons-png.flaticon.com/512/3177/3177440.png');
-  const [image, setImage] = useState();
+  const authCtx=useContext(AuthContext)
+  const [preview, setPreview] = useState(!!authCtx.userid ? authCtx.userid.profilePic : 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png');
+  const [image, setImage] = useState(null);
   const [user, setUser] = useState({});
 
-  const authCtx=useContext(AuthContext)
 
   useEffect(() => {
     if (!image) {
@@ -18,19 +20,25 @@ const UserProfile = () => {
     }
     const objectUrl = URL.createObjectURL(image);
     setPreview(objectUrl);
-  }, [image, authCtx.isLoggedIn]);
+  }, [image]);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     setUser(user);
   }, []);
 
+  const updatePicHandler=()=>{
+    getUploadProfilePic({image,userId:authCtx.userid._id})
+    .then((res)=>toast.success("Profile Picture Updated !"))
+    .catch((err)=>console.log(err))
+  }
+
   return (
     <div className="grid grid-cols-8 smrev:grid-cols-1 md:p-8">
       <div className="col-span-3  flex justify-center items-center p-4 flex-col space-y-2">
         <div className="relative w-60 h-60 rounded-full bg-gray-300">
           <img
-            src={user?.profilePic ? user?.profilePic : preview}
+            src={ preview ? preview : user?.profilePic  }
             alt="profile"
             className="w-full h-full rounded-full"
           />
@@ -53,7 +61,9 @@ const UserProfile = () => {
         </div>
 
         <div>
-          {image &&         <Button
+          {image &&         
+          <Button 
+              onClick={()=>updatePicHandler()}
               className="text-white bg-secondary py-[12px] w-40 rounded-md"
               type="submit"
             >

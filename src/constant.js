@@ -38,7 +38,7 @@ export const ALL_LINKS = {
     loginRequire: true,
   },
   Categories: {
-    pageLink: '/categories/:id',
+    pageLink: '/categories',
     view: ProductCategories,
     headerShown: true,
     footerShown: true,

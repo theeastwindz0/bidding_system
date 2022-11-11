@@ -26,7 +26,11 @@ export function getLastNProducts(numberOfProducts) {
 
 export function getCreateProduct(productData) {
   const url = API_ACCOUNT.createProduct;
-  return http.post(url, productData);
+  return http.post(url, productData,{
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 }
 
 export function getProducts() {
@@ -49,7 +53,7 @@ export function getProductsBoughtByUser(userid) {
   return http.get(url + '/productBoughtByUser/' + userid);
 }
 
-export function uploadProfilePic(data) {
+export function getUploadProfilePic(data) {
   const url = API_ACCOUNT.uploadProfilePic;
   return http.post(url, data, {
     headers: {
