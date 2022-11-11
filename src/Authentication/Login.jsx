@@ -27,8 +27,8 @@ const Login = () => {
 })
 
   return (
-    <div className='flex justify-center items-center p-10'>
-    <div className='w-[450px]  bg-slate-800 text-white px-12 py-16 rounded-lg'>
+    <div className='flex justify-center items-center p-4 md:p-10'>
+    <div className='w-[90%] md:w-[450px]  bg-slate-800 text-white px-12 py-16 rounded-lg'>
       <p className=' text-3xl font-bold my-2'> Sign In</p>
       <form onSubmit={formik.handleSubmit} className='space-y-4 my-2'>
       <InputField onBlur={formik.handleBlur} labelName='Username' type='text' uni='username' placeholder='Enter Username' onChange={formik.handleChange}   value={formik.values.username} touched={formik.touched.username} error={formik.errors.username} />
