@@ -28,8 +28,10 @@ const Signup = () => {
       address: '',
     },
     onSubmit: (values) => {
-      if (values.password !== values.repeatPassword)
+      if (values.password !== values.repeatPassword){
         toast.error('Passwords do not match');
+        return;
+      }
       getCreateUser(values)
         .then((res) => {
           if (res.status === 201) {

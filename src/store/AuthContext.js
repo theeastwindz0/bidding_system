@@ -40,7 +40,7 @@ export const AuthContextProvider=(props)=>
         setIsLoggedIn(false);
         setUserId(null);
         localStorage.removeItem("token");
-        localStorage.removeItem("userid");
+        localStorage.removeItem("user");
         toast.success("Logged out Successfully")
       };
 

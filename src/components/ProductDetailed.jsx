@@ -90,7 +90,8 @@ const ProductDetailed = () => {
             </div>
           ))}
 
-          <Button
+          {product.seller === authCtx.userid._id
+&&          <Button
             className="text-white bg-red-600 w-full py-[16px] rounded-md font-bold"
             type="submit"
             onClick={product.isSold ? null : handleSell}
@@ -101,6 +102,7 @@ const ProductDetailed = () => {
            }
 
           </Button>
+}
         </div>
       </div>
     </div>

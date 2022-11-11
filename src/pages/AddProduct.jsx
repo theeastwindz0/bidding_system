@@ -30,9 +30,7 @@ const AddProduct = () => {
       category: '',
       biddingClosedAt: '',
       howOld: '',
-      seller:authCtx.userid._id ,
-
-
+      seller:'',
     },
     onSubmit: (values) => {
       // getCreateUser(values)
