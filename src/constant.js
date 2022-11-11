@@ -93,4 +93,5 @@ export const API_ACCOUNT = {
   getProductById: PRODUCT_API + 'getProductById',
   productStats: PRODUCT_API + 'productStats',
   productBoughtAndSold: PRODUCT_API + 'getProductsBoughtAndSold',
+  getNUsers: USER_API + 'getNUsers',
 };

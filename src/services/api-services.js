@@ -76,3 +76,8 @@ export function productBoughtAndSold(id) {
   const url = API_ACCOUNT.productBoughtAndSold;
   return http.get(url + '/' + id);
 }
+
+export function getNUsers(numberOfUsers) {
+  const url = API_ACCOUNT.getNUsers;
+  return http.get(url + '/' + numberOfUsers);
+}

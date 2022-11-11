@@ -97,7 +97,7 @@ const ProductDetailed = () => {
           >
 
            {
-              product.isSold ? "Sold" : "Sell"
+              product.isSold ? "Already Sold" : "Sell To Highest Bidder"
            }
 
           </Button>

@@ -6,28 +6,33 @@ import books from '../Images/product_categories/books.jpeg'
 import furniture from '../Images/product_categories/furniture.jpeg'
 import fashion from '../Images/product_categories/fashion.jpeg'
 import technology from '../Images/product_categories/technology.jpeg'
-const {getLastNProducts}=require('../services/api-services')
+const {getNUsers}=require('../services/api-services')
 const TopSellers = () => {
-    const [products,setProducts]=useState([
-        {image:books,name:'Electronic'},
-        {image:fashion,name:'Fashion'},
-        {image:fashion,name:'Fashion'},
-        {image:fashion,name:'Fashion'},
-        
-    ])
+    const [users,setUsers]=useState([])
     useEffect(()=>{
+        getNUsers(4)
+        .then((res)=>{
+            console.log(res.data.users)
+            setUsers(res.data.users)
+        })
+        .catch((err)=>console.log(err))
     },[])
-    const Box=({product})=>{
+    const Box=({user})=>{
         return(
             <Link className='flex space-x-32 smrev:space-x-2 text-white' to=''>
             <div className='flex  justify-center items-center flex-col p-4 smrev:px-0   space-y-2' >
             <div className='bg-slate-200 rounded-full w-52 h-52 smrev:w-40 smrev:h-40 flex '>
-            <img src={product.image} alt="" className='w-full h-full rounded-full shadow-2xl shadow-quaternery'/>
+            <img src={user.profilePic} alt="" className='w-full h-full rounded-full shadow-2xl shadow-quaternery'/>
             </div>
             </div>
             <div className='flex flex-col justify-center items-center'>
-                <p id='title' className='text-2xl'>USERNAME</p>
-                <p id='title'>CITY , STATE</p>
+                <p id='title' className='text-2xl'>{
+                    user.name
+                }</p>
+                <p id='title'>{
+                    user.city + ', ' + user.state
+                }
+                    </p>
             </div>
             </Link>
         )
@@ -40,9 +45,9 @@ const TopSellers = () => {
     <FontAwesomeIcon icon={faArrowRight} size='lg' color='white'/>
         </Link>
     <div className= 'smrev:grid-cols-1 space-x-2 grid grid-cols-2'>
-    {products.map((product)=>{
+    {users.map((user)=>{
         return(
-            <Box product={product}/>
+            <Box user={user}/>
         )
     })}
 
