@@ -72,7 +72,6 @@ export default function BiddingOverlay({childFunc,product}) {
         .catch((err) => {
           toast.error(err.response.data.message);
         });
-      console.log(values);
     },
     validate: (values) => {
       let errors = {};
@@ -83,7 +82,6 @@ export default function BiddingOverlay({childFunc,product}) {
   });
 
   const [open, setOpen] = React.useState(false);
-  console.log(product)
 
   const handleClickOpen = () => {
     setOpen(true);

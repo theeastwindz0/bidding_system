@@ -10,7 +10,6 @@ const ProductCategories = () => {
 
   const biddingOverlayChildFunc=useRef();
   const authCtx=useContext(AuthContext);
-  const [currentCategory,setCurrentCategory]=useState('');
   const userId = authCtx.userid?._id;
   const [loading,setLoading]=useState(false);
   const navigate=useNavigate();
@@ -25,7 +24,7 @@ const ProductCategories = () => {
   useEffect(() => {
     getProducts()
       .then((res) => {
-        let data=res.data.products.filter((item)=>item.seller._id!==userId);
+        let data=res.data.products.filter((item)=>item.seller._id===userId);
         setProducts(data);
         setCurrentProducts(data);
         console.log(res.data);
@@ -84,39 +83,24 @@ const ProductCategories = () => {
         >
           View
         </button>
-
+        {product.isSold &&
         <button
-          className={`bg-tertiary bg-secondary text-white p-2 rounded-lg w-[100%] smrev:w-[100%] font-semibold`}
-          onClick={()=>{loginChecker()}}
+          className={`bg-tertiary bg-red-500 text-white p-2 rounded-lg w-[100%] smrev:w-[100%] font-semibold `}
+          disabled={true}
           >
-          Place Bid
+          Sold
         </button>
+  }
           </div>
       </div>
 
     );
   };
 
-  const loginChecker=()=>{
-    if(!authCtx.isLoggedIn){navigate('/login');return;}
-    biddingOverlayChildFunc.current();
-  }
-
-  const filterProducts=(filterItem)=>{
-    let data=products.filter((item)=>item.category===filterItem);
-    setCurrentProducts(data);
-  }
-
   if(!loading)return 
   <div className='items-center'>Loading Products...</div>
   return (
     <>
-      <div className='flex justify-center bg-black text-white space-x-4 p-1'>
-        <div onClick={()=>{setCurrentCategory('books');filterProducts('books');}} className='hover:bg-secondary cursor-pointer px-2'>Books</div>
-        <div onClick={()=>{setCurrentCategory('fashion');filterProducts('fashion');}} className='hover:bg-secondary cursor-pointer px-2'>Fashion</div>
-        <div onClick={()=>{setCurrentCategory('furniture');filterProducts('furniture');}} className='hover:bg-secondary cursor-pointer px-2'>Furniture</div>
-        <div onClick={()=>{setCurrentCategory('technology');filterProducts('technology');}} className='hover:bg-secondary cursor-pointer px-2'>Technology</div>
-      </div>
     <div className="p-8 smrev:p-4 ">
       {currentProducts.length>0 ?
       <div className="grid lg:grid-cols-3 gap-4  sm:grid-cols-2 smrev:grid-cols-1 smrev:space-y-4">

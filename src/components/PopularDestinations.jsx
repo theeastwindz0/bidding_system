@@ -1,7 +1,7 @@
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React,{useEffect, useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import books from '../Images/product_categories/books.jpeg'
 import furniture from '../Images/product_categories/furniture.jpeg'
 import fashion from '../Images/product_categories/fashion.jpeg'
@@ -15,18 +15,20 @@ const PopularDestinations = () => {
         {image:technology,name:'Books'},
         
     ])
+
+    const navigate=useNavigate();
     useEffect(()=>{
     },[])
     const Box=({product})=>{
         return(
-            <Link to=''>
+            <div className='cursor-pointer' onClick={()=>navigate('/categories')}>
             <div className='flex  justify-center items-center flex-col p-4   w-48 space-y-2' >
             <div className='bg-slate-200 rounded-full w-40 h-40'>
             <img src={product.image} alt="" className='w-full h-full rounded-full'/>
             </div>
             <p className='font-semibold'>{product.name}</p>
             </div>
-            </Link>
+            </div>
         )
     }
   return (

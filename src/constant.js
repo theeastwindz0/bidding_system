@@ -8,6 +8,7 @@ const UserProfile = lazy(() => import('./pages/UserProfile'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const AddProduct = lazy(() => import('./pages/AddProduct'));
 const ProductDetailed = lazy(() => import('./components/ProductDetailed'));
+const ViewMyProducts = lazy(() => import('./pages/ViewMyProducts'));
 
 export const ALL_LINKS = {
   HomePage: {
@@ -69,6 +70,13 @@ export const ALL_LINKS = {
   ProductDetailed: {
     pageLink: '/product_details/:id',
     view: ProductDetailed,
+    headerShown: true,
+    footerShown: true,
+    loginRequire: true,
+  },
+  ViewMyProducts: {
+    pageLink: '/viewmyproducts',
+    view: ViewMyProducts,
     headerShown: true,
     footerShown: true,
     loginRequire: true,
