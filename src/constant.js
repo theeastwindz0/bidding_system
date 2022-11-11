@@ -67,7 +67,7 @@ export const ALL_LINKS = {
     loginRequire: true,
   },
   ProductDetailed: {
-    pageLink: '/product_details',
+    pageLink: '/product_details/:id',
     view: ProductDetailed,
     headerShown: true,
     footerShown: true,

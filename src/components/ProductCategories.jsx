@@ -5,11 +5,13 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import AuthContext from '../store/AuthContext';
 import BiddingOverlay from '../overlays/BiddingOverlay';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 const ProductCategories = () => {
 
   const biddingOverlayChildFunc=useRef();
   const authCtx=useContext(AuthContext);
   const userId = authCtx.userid?._id;
+  const navigate=useNavigate();
   console.log(userId);
   const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -67,13 +69,21 @@ const ProductCategories = () => {
             ₹{price}
           </div>
         </div>
+        <div className='grid grid-cols-1 sm:grid-cols-2 w-[80%] justify-center space-x-4 '>
+        <button
+          className={`bg-tertiary bg-primary text-white p-2 rounded-lg w-[100%] smrev:w-[100%] font-semibold`}
+          onClick={()=>navigate(`/product_details/${product._id}`,product._id)}
+        >
+          View
+        </button>
 
         <button
-          className={`bg-tertiary bg-secondary text-white p-2 rounded-lg w-[90%] smrev:w-[100%] font-semibold`}
+          className={`bg-tertiary bg-secondary text-white p-2 rounded-lg w-[100%] smrev:w-[100%] font-semibold`}
           onClick={()=>biddingOverlayChildFunc.current()}
-        >
+          >
           Place Bid
         </button>
+          </div>
       </div>
     );
   };
