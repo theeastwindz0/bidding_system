@@ -1,10 +1,10 @@
 import { lazy } from "react";
 
-
 const  HomePage =lazy(()=>import("./pages/HomePage"));
 const  Signup =lazy(()=>import("./Authentication/Signup"));
 const  Login =lazy(()=>import("./Authentication/Login"));
 const  Product =lazy(()=>import("./Products/Product"));
+const  ProductCategories =lazy(()=>import("./components/ProductCategories"));
 
 export const ALL_LINKS={
     HomePage:{
@@ -34,6 +34,13 @@ export const ALL_LINKS={
         headerShown:true,
         footerShown:true,
         loginRequire:true
+    },
+    Categories:{
+        pageLink:'/categories/:id',
+        view:ProductCategories,
+        headerShown:true,
+        footerShown:true,
+        loginRequire:false
     },
 
 }

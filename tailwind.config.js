@@ -8,6 +8,7 @@ module.exports = {
       screens:{
         'smrev': {'max':'640px'},
         'mdrev': {'max':'768px'},
+        'lgrev': {'max':'1024px'},
       },
       colors:{
         primary:'#06283D',

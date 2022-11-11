@@ -25,6 +25,7 @@ const App = () => {
     ALL_LINKS.HomePage,
     ALL_LINKS.Login,
     ALL_LINKS.Signup,
+    ALL_LINKS.Categories
   ];
 
   const currentPathName = (location) => {

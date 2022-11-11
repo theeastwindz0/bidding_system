@@ -17,7 +17,7 @@ const PopularDestinations = () => {
         )
     }
   return (
-    <div className='flex justify-center items-center'>
+    <div className='flex justify-center items-center md:p-8'>
     <div className='w-[80%]'>
     <Link to='/login' className=' text-2xl font-bold p-4 flex items-center space-x-2 '>
         <p>Popular Products</p>
