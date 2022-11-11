@@ -1,10 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { getProducts } from '../services/api-services';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import AuthContext from '../store/AuthContext';
 import BiddingOverlay from '../overlays/BiddingOverlay';
+import { toast } from 'react-toastify';
 const ProductCategories = () => {
+
+  const biddingOverlayChildFunc=useRef();
   const authCtx=useContext(AuthContext);
   const userId = authCtx.userid?._id;
   console.log(userId);
@@ -12,11 +15,13 @@ const ProductCategories = () => {
   useEffect(() => {
     getProducts()
       .then((res) => {
-        setProducts(res.data.products);
+        let data=res.data.products.filter((item)=>item.seller._id!==userId);
+        console.log(data)
+        setProducts(data);
         console.log(res.data);
       })
 
-      .catch((err) => console.log(err.response.data));
+      .catch((err) => toast.error(err.response.data.message));
   }, []);
 
   const Box = ({
@@ -26,11 +31,12 @@ const ProductCategories = () => {
     productImage,
     city,
     state,
-    sellerId
+    sellerId,
+    product
   }) => {
     return (
       <div className="p-4 smrev:p-0 flex justify-center items-center flex-col">
-        <BiddingOverlay />
+        <BiddingOverlay childFunc={biddingOverlayChildFunc} product={ product}  />
         <div className="smrev:w-[100%] w-[90%] bg-gray-300 h-60 rounded-lg overflow-hidden">
           <img src={productImage} alt="product" className="w-full h-full" />
         </div>
@@ -64,6 +70,7 @@ const ProductCategories = () => {
 
         <button
           className={`bg-tertiary bg-secondary text-white p-2 rounded-lg w-[90%] smrev:w-[100%] font-semibold`}
+          onClick={()=>biddingOverlayChildFunc.current()}
         >
           Place Bid
         </button>
@@ -82,6 +89,7 @@ const ProductCategories = () => {
             city={product.seller.city}
             state={product.seller.state}
             sellerId = {product.seller._id}
+            product={product}
           />
         ))}
       </div>

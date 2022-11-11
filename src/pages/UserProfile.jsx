@@ -8,7 +8,7 @@ import { getUploadProfilePic } from '../services/api-services';
 import { toast } from 'react-toastify';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
-const UserProfile = () => {
+const UserProfile = (props) => {
   const authCtx=useContext(AuthContext)
   const [preview, setPreview] = useState(!!authCtx.userid ? authCtx.userid.profilePic : 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png');
   const [image, setImage] = useState(null);
@@ -73,7 +73,8 @@ const UserProfile = () => {
             </Button>}
         </div>
         <div className='w-full flex flex-col space-y-8 items-center'>
-        <Button onClick={()=>navigate('/addproduct')} className="text-black bg-transparent border-[1px] hover:text-white hover:border-none  hover:bg-blue-  border-black w-[60%] py-[12px] w- rounded-md" type="submit">Add Product</Button>
+        <Button onClick={()=>navigate('/addproduct')} className="text-black hover:bg-green-500 border-[1px] hover:text-white hover:border-none  hover:bg-blue-  border-black w-[60%] py-[12px] w- rounded-md" type="submit">Add Product</Button>
+        <Button  className="text-black hover:bg-blue-500 border-[1px] hover:text-white hover:border-none  hover:bg-blue-  border-black w-[60%] py-[12px] w- rounded-md" type="submit">View Products</Button>
         {/* <Button onClick={()=>} className="text-black bg-transparent border-[1px] hover:text-white hover:border-none  hover:bg-green-500  border-black w-[60%] py-[12px] w- rounded-md" type="submit">View My Products</Button> */}
         <Button onClick={()=>authCtx.logout()} className="text-black bg-transparent border-[1px] hover:text-white hover:border-none  hover:bg-red-500  border-black w-[60%] py-[12px] w- rounded-md" type="submit">Logout</Button>
         </div>
