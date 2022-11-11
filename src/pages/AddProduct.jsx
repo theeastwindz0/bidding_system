@@ -89,7 +89,7 @@ const AddProduct = () => {
           </div>
                   <InputField onBlur={formik.handleBlur} labelName="Description" type="text" uni="description" placeholder="Enter Description" onChange={formik.handleChange} value={formik.values.description} touched={formik.touched.description} error={formik.errors.description} inputClass='border-[1px]' labelClass='text-black' />
                   
-                  <div className="grid grid-cols-3  smrev:grid-cols-1 space-y-4 ">
+                  <div className="grid grid-cols-3  smrev:grid-cols-1  space-x-4 ">
                   {image &&  <div className='w-full h-60 rounded-md flex justify-center items-center overflow-hidden'>
                     <img src={preview}></img>
                   </div>}

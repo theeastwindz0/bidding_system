@@ -34,7 +34,7 @@ const Section1 = () => {
             to={user ? '/dashboard' : '/login'}
             onClick={() => {
               if (authCtx.isLoggedIn) {
-                navigate('/dashboard');
+                navigate('/profile');
               } else {
                 navigate('/signup');
               }

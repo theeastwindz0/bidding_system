@@ -6,12 +6,14 @@ import InputField from '../components/InputField';
 import AuthContext from '../store/AuthContext';
 import { getUploadProfilePic } from '../services/api-services';
 import { toast } from 'react-toastify';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {
   const authCtx=useContext(AuthContext)
   const [preview, setPreview] = useState(!!authCtx.userid ? authCtx.userid.profilePic : 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png');
   const [image, setImage] = useState(null);
   const [user, setUser] = useState({});
+  const navigate=useNavigate();
 
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const UserProfile = () => {
 
   return (
     <div className="grid grid-cols-8 smrev:grid-cols-1 md:p-8">
-      <div className="col-span-3  flex justify-center items-center p-4 flex-col space-y-2">
+      <div className="col-span-3  flex justify-start items-center p-4 flex-col space-y-2">
         <div className="relative w-60 h-60 rounded-full bg-gray-300">
           <img
             src={ preview ? preview : user?.profilePic  }
@@ -69,6 +71,11 @@ const UserProfile = () => {
             >
               Update
             </Button>}
+        </div>
+        <div className='w-full flex flex-col space-y-8 items-center'>
+        <Button onClick={()=>navigate('/addproduct')} className="text-black bg-transparent border-[1px] hover:text-white hover:border-none  hover:bg-blue-  border-black w-[60%] py-[12px] w- rounded-md" type="submit">Add Product</Button>
+        {/* <Button onClick={()=>} className="text-black bg-transparent border-[1px] hover:text-white hover:border-none  hover:bg-green-500  border-black w-[60%] py-[12px] w- rounded-md" type="submit">View My Products</Button> */}
+        <Button onClick={()=>authCtx.logout()} className="text-black bg-transparent border-[1px] hover:text-white hover:border-none  hover:bg-red-500  border-black w-[60%] py-[12px] w- rounded-md" type="submit">Logout</Button>
         </div>
       </div>
       <div className="col-span-5 p-4 space-y-4">
@@ -129,6 +136,23 @@ const UserProfile = () => {
             value={user?.state}
             inputClass="bg-gray-200"
           />
+        </div>
+        <div className="grid grid-cols-3 gap-4 mdrev:grid-cols-1 py-4">
+          <div className='h-40 bg-red-500 rounded-lg flex justify-center items-center flex-col'>
+            <p id='title' className='text-xl text-white'>Total Products</p>
+            <p id='title' className='text-2xl text-white'>0</p>
+          </div>
+
+          <div className='h-40 bg-pink-500 rounded-lg flex justify-center items-center flex-col'>
+            <p id='title' className='text-xl text-white'>Total Products</p>
+            <p id='title' className='text-2xl text-white'>0</p>
+          </div>
+
+          <div className='h-40 bg-green-500 rounded-lg flex justify-center items-center flex-col'>
+            <p id='title' className='text-lg text-white'>Total Products</p>
+            <p id='title' className='text-xl text-white'>0</p>
+          </div>
+
         </div>
       </div>
     </div>

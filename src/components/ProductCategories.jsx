@@ -3,11 +3,11 @@ import { getProducts } from '../services/api-services';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import AuthContext from '../store/AuthContext';
+import BiddingOverlay from '../overlays/BiddingOverlay';
 const ProductCategories = () => {
   const authCtx=useContext(AuthContext);
-  const userId = authCtx.userid._id;
+  const userId = authCtx.userid?._id;
   console.log(userId);
-  const [buttonText, setButtonText] = useState('Place Bid');
   const [products, setProducts] = useState([]);
   useEffect(() => {
     getProducts()
@@ -30,6 +30,7 @@ const ProductCategories = () => {
   }) => {
     return (
       <div className="p-4 smrev:p-0 flex justify-center items-center flex-col">
+        <BiddingOverlay />
         <div className="smrev:w-[100%] w-[90%] bg-gray-300 h-60 rounded-lg overflow-hidden">
           <img src={productImage} alt="product" className="w-full h-full" />
         </div>
@@ -62,18 +63,9 @@ const ProductCategories = () => {
         </div>
 
         <button
-          className={`bg-tertiary ${!userId===sellerId ? "bg-secondary":"bg-gray-500"} p-2 rounded-lg w-[90%] smrev:w-[100%]
-
-            ${
-              userId===sellerId
-              ? "text-white":"text-black"
-            }
-           font-semibold
-        `}
+          className={`bg-tertiary bg-secondary text-white p-2 rounded-lg w-[90%] smrev:w-[100%] font-semibold`}
         >
-          {
-            userId === sellerId ? "Your Product" : "Place Bid"
-          }
+          Place Bid
         </button>
       </div>
     );
