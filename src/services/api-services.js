@@ -26,7 +26,7 @@ export function getLastNProducts(numberOfProducts) {
 
 export function getCreateProduct(productData) {
   const url = API_ACCOUNT.createProduct;
-  return http.post(url, productData,{
+  return http.post(url, productData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
@@ -60,4 +60,14 @@ export function getUploadProfilePic(data) {
       'Content-Type': 'multipart/form-data',
     },
   });
+}
+
+export function getProductsById(id) {
+  const url = API_ACCOUNT.getProductById;
+  return http.get(url + '/' + id);
+}
+
+export function getProductsStats(id) {
+  const url = API_ACCOUNT.productStats;
+  return http.get(url + '/' + id);
 }
