@@ -41,7 +41,7 @@ const Section1 = () => {
             }}
           >
             {' '}
-            {authCtx.isLoggedIn ? 'Go to Dashboard' : 'Become a member'}
+            {authCtx.isLoggedIn ? 'Go to Profile' : 'Become a member'}
           </button>
         </div>
       </div>
