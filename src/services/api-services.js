@@ -48,3 +48,12 @@ export function getProductsBoughtByUser(userid) {
   const url = API_ACCOUNT.getAllProducts;
   return http.get(url + '/productBoughtByUser/' + userid);
 }
+
+export function uploadProfilePic(data) {
+  const url = API_ACCOUNT.uploadProfilePic;
+  return http.post(url, data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+}

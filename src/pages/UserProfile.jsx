@@ -11,7 +11,7 @@ const UserProfile = () => {
   const [user, setUser] = useState({});
 
   const authCtx=useContext(AuthContext)
-  
+
   useEffect(() => {
     if (!image) {
       return;
@@ -19,7 +19,7 @@ const UserProfile = () => {
     const objectUrl = URL.createObjectURL(image);
     setPreview(objectUrl);
   }, [image, authCtx.isLoggedIn]);
-  
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     setUser(user);

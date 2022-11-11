@@ -81,4 +81,5 @@ export const API_ACCOUNT = {
   getAllProducts: PRODUCT_API + 'getProducts',
   getProductsBySeller: PRODUCT_API + 'getProductBySeller',
   productBoughtByUser: PRODUCT_API + 'productBoughtByUser',
+  uploadProfilePic : USER_API + 'profilePic',
 };
