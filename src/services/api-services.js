@@ -13,3 +13,8 @@ export function getCreateUser(signupData) {
   const url = API_ACCOUNT.userSignUp;
   return http.post(url, signupData);
 }
+
+export function getLoginUser(loginData) {
+  const url = API_ACCOUNT.userLogin;
+  return http.post(url, loginData);
+}

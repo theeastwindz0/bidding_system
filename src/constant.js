@@ -50,4 +50,5 @@ const USER_API = API_ACCOUNT_DOMAIN + 'api/user/';
 
 export const API_ACCOUNT = {
   userSignUp: USER_API + 'signup',
+  userLogin: USER_API + 'login',
 };
