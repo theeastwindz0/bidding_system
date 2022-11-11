@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import InputField from '../components/InputField';
 import AuthContext from '../store/AuthContext';
 import { getCreateProduct } from '../services/api-services';
+import SelectField from '../components/SelectField';
 const AddProduct = () => {
   const [preview, setPreview] = useState('');
   const [image, setImage] = useState(null);
@@ -79,7 +80,12 @@ const AddProduct = () => {
     <form className='p-8 space-y-4 ' onSubmit={formik.handleSubmit}>
           <div className="grid grid-cols-3 gap-4 smrev:grid-cols-1">
                   <InputField onBlur={formik.handleBlur} labelName="Name" type="text" uni="name" placeholder="Enter Name" onChange={formik.handleChange} value={formik.values.name} touched={formik.touched.name} error={formik.errors.name} inputClass='border-[1px]' labelClass='text-black' />
-                  <InputField onBlur={formik.handleBlur} labelName="Category" type="text" uni="category" placeholder="Enter Category" onChange={formik.handleChange} value={formik.values.category} touched={formik.touched.category} error={formik.errors.description} inputClass='border-[1px]' labelClass='text-black' />
+                  <SelectField onBlur={formik.handleBlur} labelName="Category" type="text" uni="category" placeholder="Enter Category" onChange={formik.handleChange} value={formik.values.category} touched={formik.touched.category} error={formik.errors.category} inputClass='border-[1px]' labelClass='text-black'>
+                    <option value='fashion'>Fashion</option>
+                    <option value='technology'>Technology</option>
+                    <option value='furniture'>Furniture</option>
+                    <option value='books'>Books</option>
+                  </SelectField>
                   <InputField onBlur={formik.handleBlur} labelName="Price" type="number" uni="basePrice" placeholder="Enter Base Price" onChange={formik.handleChange} value={formik.values.basePrice} touched={formik.touched.basePrice} error={formik.errors.basePrice} inputClass='border-[1px]' labelClass='text-black' />
           </div>
           <div className="grid grid-cols-3 gap-4 smrev:grid-cols-1">
@@ -89,11 +95,11 @@ const AddProduct = () => {
           </div>
                   <InputField onBlur={formik.handleBlur} labelName="Description" type="text" uni="description" placeholder="Enter Description" onChange={formik.handleChange} value={formik.values.description} touched={formik.touched.description} error={formik.errors.description} inputClass='border-[1px]' labelClass='text-black' />
                   
-                  <div className="grid grid-cols-3  smrev:grid-cols-1  space-x-4 ">
+                  <div className="grid grid-cols-3  smrev:grid-cols-1  space-x-4 smrev:space-x-0 ">
                   {image &&  <div className='w-full h-60 rounded-md flex justify-center items-center overflow-hidden'>
                     <img src={preview}></img>
                   </div>}
-                  <div className='border-2 border-dotted w-full h-60 border-black rounded-md flex justify-center items-center'>
+                  <div className='border-2 border-dotted w-full h-60 border-black rounded-md flex justify-center items-center smrev:my-2'>
                     
                   <div className=" right-0 bottom-8">
               <label htmlFor="profile_pic">

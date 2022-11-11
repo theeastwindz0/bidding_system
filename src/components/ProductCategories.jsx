@@ -10,20 +10,22 @@ const ProductCategories = () => {
 
   const biddingOverlayChildFunc=useRef();
   const authCtx=useContext(AuthContext);
+  const [currentCategory,setCurrentCategory]=useState('');
   const userId = authCtx.userid?._id;
+  const [loading,setLoading]=useState(false);
   const navigate=useNavigate();
-  console.log(userId);
   const [products, setProducts] = useState([]);
+  const [currentProducts, setCurrentProducts] = useState([]);
   useEffect(() => {
     getProducts()
       .then((res) => {
         let data=res.data.products.filter((item)=>item.seller._id!==userId);
-        console.log(data)
         setProducts(data);
+        setCurrentProducts(data);
         console.log(res.data);
       })
-
-      .catch((err) => toast.error(err.response.data.message));
+      .catch((err) => toast.error(err.response.data.message))
+      .finally(()=>setLoading(true))
   }, []);
 
   const Box = ({
@@ -69,7 +71,7 @@ const ProductCategories = () => {
             ₹{price}
           </div>
         </div>
-        <div className='grid grid-cols-1 sm:grid-cols-2 w-[80%] justify-center space-x-4 '>
+        <div className='grid grid-cols-1 sm:grid-cols-2 w-[80%] justify-center space-x-4 smrev:space-x-0 smrev:space-y-2 smrev:w-[100%] '>
         <button
           className={`bg-tertiary bg-primary text-white p-2 rounded-lg w-[100%] smrev:w-[100%] font-semibold`}
           onClick={()=>navigate(`/product_details/${product._id}`,product._id)}
@@ -79,18 +81,40 @@ const ProductCategories = () => {
 
         <button
           className={`bg-tertiary bg-secondary text-white p-2 rounded-lg w-[100%] smrev:w-[100%] font-semibold`}
-          onClick={()=>biddingOverlayChildFunc.current()}
+          onClick={()=>{loginChecker()}}
           >
           Place Bid
         </button>
           </div>
       </div>
+
     );
   };
+
+  const loginChecker=()=>{
+    if(!authCtx.isLoggedIn){navigate('/login');return;}
+    biddingOverlayChildFunc.current();
+  }
+
+  const filterProducts=(filterItem)=>{
+    let data=products.filter((item)=>item.category===filterItem);
+    setCurrentProducts(data);
+  }
+
+  if(!loading)return 
+  <div className='items-center'>Loading Products...</div>
   return (
+    <>
+      <div className='flex justify-center bg-black text-white space-x-4 p-1'>
+        <div onClick={()=>{setCurrentCategory('books');filterProducts('books');}} className='hover:bg-secondary cursor-pointer px-2'>Books</div>
+        <div onClick={()=>{setCurrentCategory('fashion');filterProducts('fashion');}} className='hover:bg-secondary cursor-pointer px-2'>Fashion</div>
+        <div onClick={()=>{setCurrentCategory('furniture');filterProducts('furniture');}} className='hover:bg-secondary cursor-pointer px-2'>Furniture</div>
+        <div onClick={()=>{setCurrentCategory('technology');filterProducts('technology');}} className='hover:bg-secondary cursor-pointer px-2'>Technology</div>
+      </div>
     <div className="p-8 smrev:p-4 ">
+      {currentProducts.length>0 ?
       <div className="grid lg:grid-cols-3 gap-4  sm:grid-cols-2 smrev:grid-cols-1 smrev:space-y-4">
-        {products.map((product) => (
+        {currentProducts.map((product) => (
           <Box
             sellerName={product.seller.name}
             price={product.basePrice}
@@ -102,8 +126,9 @@ const ProductCategories = () => {
             product={product}
           />
         ))}
-      </div>
+      </div>: <p className='text-center font-bold'>No Products related to this category</p>}
     </div>
+    </>
   );
 };
 
